@@ -73,6 +73,12 @@ now to the real work
 
     navigator.getUserMedia({audio: false, video: true}, success, error)
 
-to be honest, i don't believe this will work. but hey, it works
+to be honest, i don't believe this will work. but hey, it works.
 
-ok thx, fork on github.
+oh, don't forget getUserMedia works only with online documents, so to test this locally you will have to do something like
+
+    #python -m SimpleHTTPServer 3000
+
+on your terminal
+
+ok thx, [fork on github](https://github.com/franzenzenhofer/webcam2favicon).
