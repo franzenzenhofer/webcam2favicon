@@ -6,6 +6,8 @@ you might ask: hey, what is [literate coffeescript](http://coffeescript.org/#lit
 
 why? the idea behind [literate programming](http://en.wikipedia.org/wiki/Literate_programming) (by a guy named [knuth](http://en.wikipedia.org/wiki/Donald_Knuth)) is to explain everything in coding as code is just another kind of story. to be honest, i never read the book, but i read [coders at work](http://www.codersatwork.com/) and they talk about knuth a lot. (great book by the way)
 
+__note__: this document is valid markdown, open the markdown-viewer of your choice now to verify!
+
 but get one with the fun
 
 first we create a simple jquery thingie, because i want to
