@@ -80,6 +80,10 @@ oh, don't forget getUserMedia works only with online documents, so to test this 
 
     #python -m SimpleHTTPServer 3000
 
-on your terminal
+on your terminal.
 
-ok thx, [fork on github](https://github.com/franzenzenhofer/webcam2favicon).
+you can compile this document to js the usual way
+
+    #coffee -wc webcam2favicon.litcoffee 
+
+ok thx for your time, [fork on github](https://github.com/franzenzenhofer/webcam2favicon).
