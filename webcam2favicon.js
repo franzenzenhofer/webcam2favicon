@@ -8,7 +8,6 @@
 
   success = function(stream) {
     var canvas, context, drawFavicon, framerate, video;
-    console.log('hi');
     video = document.createElement('video');
     video.src = window.URL.createObjectURL(stream);
     video.autoplay = true;
@@ -36,7 +35,7 @@
     return console.log('es ist schon wieder was passiert');
   };
 
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
   navigator.getUserMedia({
     audio: false,

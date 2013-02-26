@@ -19,7 +19,6 @@ ok, we google to find out how that getUserMethod really works. ok got it.
 we need a success callback function that gets handled a stream object
 
     success = (stream) ->
-      console.log('hi')
 
 we want to do something with the stream and as i don't know how we just turn it into a video
     
@@ -67,7 +66,7 @@ ok, but we are pretty deep down in the rabbit hole already, this is only just th
 
 ok, now to call all this stuff via getUserMedia, but uh oh i think getUserMedia is still prefixed in webkit, just to make sure
 
-    navigator.getUserMedia  = navigator.getUserMedia or navigator.webkitGetUserMedia
+    navigator.getUserMedia  = navigator.getUserMedia or navigator.webkitGetUserMedia or navigator.mozGetUserMedia
 
 now to the real work
 
