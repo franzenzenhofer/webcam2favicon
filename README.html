@@ -1,0 +1,51 @@
+<h2>webcam2favicon </h2>
+<p>hi, this is an execise for literate programming. i&#39;m creating a webcam2favicon pseudo streamer with plain HTML5 apis and literate coffeescript.</p>
+<p>you might ask: hey, what is <a href="http://coffeescript.org/#literate">literate coffeescript</a>? well, basically you can not compile coffeescript within a markdown file into actual working javascript.</p>
+<p>why? the idea behind <a href="http://en.wikipedia.org/wiki/Literate_programming">literate programming</a> (by a guy named <a href="http://en.wikipedia.org/wiki/Donald_Knuth">knuth</a>) is to explain everything in coding as code is just another kind of story. to be honest, i never read the book, but i read <a href="http://www.codersatwork.com/">coders at work</a> and they talk about knuth a lot. (great book by the way)</p>
+<p><strong>note</strong>: this document is valid markdown, open the markdown-viewer of your choice now to verify!</p>
+<p>but get one with the fun</p>
+<p>first we create a simple jquery thingie, because i want to</p>
+<pre><code>$ = (s) -&gt; document.querySelector(s)</code></pre>
+<p>yeah, that is fun.</p>
+<p>ok, we google to find out how that getUserMethod really works. ok got it.</p>
+<p>we need a success callback function that gets handled a stream object</p>
+<pre><code>success = (stream) -&gt;</code></pre>
+<p>we want to do something with the stream and as i don&#39;t know how we just turn it into a video</p>
+<pre><code>  video = document.createElement(&#39;video&#39;)
+  video.src = window.URL.createObjectURL(stream)</code></pre>
+<p>as we love visual feedback lets add the video to the body</p>
+<pre><code>  video.autoplay=true
+  $(&#39;body&#39;).appendChild(video)</code></pre>
+<p>ok, but the goal is to get the webcam into the favicon, hmm, hmmm, we draw the video into a canvas (and resize it to 16px16px favicon size)</p>
+<pre><code>  canvas = document.createElement(&#39;canvas&#39;)
+  canvas.width=16
+  canvas.height=16
+  context = canvas.getContext(&#39;2d&#39;)</code></pre>
+<p>a function to draw the canvas stuff into the favicon</p>
+<pre><code>  drawFavicon = (video) -&gt;
+    context.drawImage(video,0,0,canvas.width,canvas.height)
+    the_data_url = canvas.toDataURL()
+    #console.log(&#39;test&#39;)
+    #console.log(the_data_url)
+    $(&#39;#favicon&#39;).setAttribute(&#39;href&#39;, the_data_url)</code></pre>
+<p>for testing purposes and for the effect we also render the small favicons to the body</p>
+<pre><code>    img = document.createElement(&#39;img&#39;)
+    img.src = the_data_url
+    $(&#39;body&#39;).appendChild(img)</code></pre>
+<p>i think we go with a </p>
+<pre><code>  framerate = 24</code></pre>
+<p>per second.</p>
+<pre><code>  setInterval((()-&gt;drawFavicon(video)), 1000/framerate)</code></pre>
+<p>ok, but we are pretty deep down in the rabbit hole already, this is only just the success handler, we still need an error handler and well something to call all these callbacks</p>
+<pre><code>error = () -&gt; console.log(&#39;es ist schon wieder was passiert&#39;)</code></pre>
+<p>ok, now to call all this stuff via getUserMedia, but uh oh i think getUserMedia is still prefixed in webkit, just to make sure</p>
+<pre><code>navigator.getUserMedia  = navigator.getUserMedia or navigator.webkitGetUserMedia or navigator.mozGetUserMedia</code></pre>
+<p>now to the real work</p>
+<pre><code>navigator.getUserMedia({audio: false, video: true}, success, error)</code></pre>
+<p>to be honest, i don&#39;t believe this will work. but hey, it works.</p>
+<p>oh, don&#39;t forget getUserMedia works only with online documents, so to test this locally you will have to do something like</p>
+<pre><code>#python -m SimpleHTTPServer 3000</code></pre>
+<p>on your terminal.</p>
+<p>you can compile this document to js the usual way</p>
+<pre><code>#coffee -wc webcam2favicon.litcoffee </code></pre>
+<p>ok thx for your time, <a href="https://github.com/franzenzenhofer/webcam2favicon">fork on github</a>.</p>
